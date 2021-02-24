@@ -1,0 +1,61 @@
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>File Upload-Download</title>
+    <link rel="stylesheet" href="/css/download.css" />
+
+    <!-- INCLUDING JQUERY-->
+    <script src=
+                    "https://code.jquery.com/jquery-3.5.1.js">
+    </script>
+</head>
+
+<body>
+<section>
+    <h1>Download Files</h1>
+
+    <!-- TABLE CONSTRUCTION-->
+    <table id='table'>
+        <!-- HEADING FORMATION -->
+        <tr>
+            <th>File Name</th>
+            <th>Download Link</th>
+        </tr>
+
+        <script>
+                $(document).ready(function () { 
+  
+                    // FETCHING DATA FROM JSON FILE 
+                    $.getJSON("/all-files",
+                            function (data) { 
+                        var student = ''; 
+  
+                        // ITERATING THROUGH OBJECTS 
+                        $.each(data, function (key, value) { 
+  
+                            //CONSTRUCTION OF ROWS HAVING 
+                            // DATA FROM JSON OBJECT 
+                            student += '<tr>'; 
+                            student += '<td>' +  
+                                value.FileName + '</td>';
+  
+                            student += '<td>' +
+                            "<p>" + "Download".link(value.Link) + "</p>"
+                                + '</td>';
+  
+                            student += '</tr>'; 
+                        }); 
+                          
+                        //INSERTING ROWS INTO TABLE  
+                        $('#table').append(student); 
+                    }); 
+                }); 
+            </script>
+</section>
+<button onclick="document.location='index.html'" class="btn"><i class="fa fa-home"></i> Home</button>
+</body>
+
+</html> 
